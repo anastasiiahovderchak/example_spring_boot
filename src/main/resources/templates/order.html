@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+
+<div class="container mt-5">
+    <h1>Creation an order</h1>
+            <div th:each="el : ${cart}" class="alert alert-info mt-2">
+                <h2 th:value="el.id"/>
+                <input type="text" th:value="${el.name}" name="name" placeholder="Enter new name" class="form-control"><br>
+                <input type="number" th:value="${el.price}" name="price" placeholder="Enter new price" class="form-control"><br>
+                <input type="number" th:value="${el.size}" name="size" placeholder="Enter new size" class="form-control"><br>
+                <input type="text" th:value="${el.color}" name="color" placeholder="Enter new color" class="form-control"><br>
+            </div><br>
+            <div class="alert alert-info mt-2">
+                <input type="text" th:value="${user.first_name}" name="first_name" placeholder="Enter your First name" class="form-control"><br>
+                <input type="text" th:value="${user.last_name}" name="last_name" placeholder="Enter your Last name" class="form-control"><br>
+                <input type="number" th:value="${user.phonenumber}" name="phonenumber" placeholder="Enter your phone number" class="form-control"><br>
+            </div>
+
+    <form th:action="'/order'" method="post">
+            <div class="alert alert-info mt-2">
+                <input type="text" th:value="${order.region}" name="region" placeholder="Enter your region" class="form-control"><br>
+                <input type="text" th:value="${order.city}" name="city" placeholder="Enter your city" class="form-control"><br>
+                <input type="text" th:value="${order.street}" name="street" placeholder="Enter the name of the street" class="form-control"><br>
+                <input type="number" th:value="${order.streetnum}" name="streetnum" placeholder="Enter the number of the street" class="form-control"><br>
+                <input type="number" th:value="${order.officenum}" name="officenum" placeholder="Enter the number of post office" class="form-control"><br>
+            </div>
+
+            <button type="submit" class="btn btn-success">Create</button>
+    </form><br>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

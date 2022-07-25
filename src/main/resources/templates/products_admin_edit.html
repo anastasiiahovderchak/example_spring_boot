@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+
+<div class="container mt-5">
+    <h1>Edit products</h1>
+    <div th:each="el : ${prods}" class="alert alert-info mt-2">
+        <form th:action="'/admin/catalog/' + ${el.id} + '/edit'" method="post">
+            <input type="text" th:value="${el.collection}" name="collection" placeholder="Enter new collection" class="form-control"><br>
+            <input type="text" th:value="${el.name}" name="name" placeholder="Enter new name" class="form-control"><br>
+            <input type="number" th:value="${el.price}" name="price" placeholder="Enter new price" class="form-control"><br>
+            <input type="number" th:value="${el.size}" name="size" placeholder="Enter new size" class="form-control"><br>
+            <input type="text" th:value="${el.color}" name="color" placeholder="Enter new color" class="form-control"><br>
+            <input type="text" th:value="${el.shortdesc}" name="shortdesc" placeholder="Enter new short description" class="form-control"><br>
+            <input type="text" th:value="${el.fulldesc}" name="fulldesc" placeholder="Enter new full description" class="form-control"><br>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form><br>
+        <form th:action="'/admin/catalog/' + ${el.id} + '/remove'" method="post">
+            <button type="submit" class="btn btn-warning">Remove</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
